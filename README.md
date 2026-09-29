@@ -59,7 +59,7 @@ Gomoku 20x20 game with AI. Game has 3 levels of AI from easy to hard.
 
 ## 🧠 Algorithm structure AI
 
-- **Heuristic function (Evaluation Function):** Pattern Scoring such as *Chuỗi 5, Chuỗi 4 mở 2 đầu, Chuỗi 4 bị chặn, Chuỗi 3 mở...* helps AI evaluates the optimistic move.
+- **Heuristic function (Evaluation Function):** Pattern Scoring such as *5-Streak, 4-Streak, Double-end,  4-streak blocked, 3-streak not blocked...* helps AI evaluates the optimistic move.
 - **Alpha-Beta Pruning:** Iterating tree at depth=2, helps pruning not optimize branch and increase the speed of algorithm $20 \times 20$.
 ---
 ## Lisence
