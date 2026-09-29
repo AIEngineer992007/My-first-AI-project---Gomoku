@@ -1,6 +1,6 @@
 import sys
 import pygame
-import random, time
+import random
 from abc import ABC, abstractmethod
 
 # Khởi tạo Pygame
@@ -299,7 +299,7 @@ class Board:
 class BaseAI:
     def __init__(self, symbol):
         self.symbol = symbol
-        self.symbol_of_opponent = 'O' #if symbol == 'X' else 'X'
+        self.symbol_of_opponent = 'O' if symbol == 'X' else 'X'
     @abstractmethod
     def get_move(self, board):
         pass   
@@ -377,9 +377,9 @@ class AlphaBetaAI(BaseAI):
         if last_move is not None:
             if board.check_win(last_move[0], last_move[1], player_symbol):
                 if player_symbol == self.symbol:
-                    return patterns_scores["PLAYER_5"]
-                else:
                     return patterns_scores["AI_5"]
+                else:
+                    return patterns_scores["PLAYER_5"]
                 
         if depth == 0 or len(board.get_empty_cell()) == 0:
             return evaluate_board(board, self.symbol)
@@ -392,7 +392,7 @@ class AlphaBetaAI(BaseAI):
             for r, c in candidates_move:
                 board.make_move(r, c, self.symbol)
                 
-                eval = self._alpha_beta(board, depth - 1, alpha, beta, False, (r, c), player_symbol)
+                eval = self._alpha_beta(board, depth - 1, alpha, beta, False, (r, c), self.symbol)
                 board.undo_move(r, c)
                 
                 max_eval = max(max_eval, eval)
@@ -407,7 +407,7 @@ class AlphaBetaAI(BaseAI):
             for r, c in candidates_move:
                 board.make_move(r, c, player_symbol)
                 
-                eval = self._alpha_beta(board, depth - 1, alpha, beta, True, (r, c), player_symbol)
+                eval = self._alpha_beta(board, depth - 1, alpha, beta, True, (r, c), self.symbol_of_opponent)
                 board.undo_move(r, c)
                 
                 min_eval = min(min_eval, eval)
@@ -516,6 +516,7 @@ def draw_board(screen, board_obj):
 # LUỒNG CHẠY CHÍNH (GAME LOOP)
 # ==========================================
 def main():
+    
     game_board = None
     player_symbol = 'X'
     ai_symbol = 'O'
