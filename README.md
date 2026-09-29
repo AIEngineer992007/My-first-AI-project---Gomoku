@@ -53,7 +53,7 @@ Gomoku 20x20 game with AI. Game has 3 levels of AI from easy to hard.
 | **`R`** | Reset Game |
 | **`M`** | Back to Menu |
 | **`Q`** | Quit game |
-*Note*: 
+*Note*: If your key do not active, try swap input method to English. 
 
 ---
 
